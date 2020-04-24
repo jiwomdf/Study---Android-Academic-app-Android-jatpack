@@ -8,6 +8,4 @@ class AcademyViewModel: ViewModel() {
 
     fun getCourses(): List<CourseEntity> = DataDummy.generateDummyCourses()
 
-
-
 }

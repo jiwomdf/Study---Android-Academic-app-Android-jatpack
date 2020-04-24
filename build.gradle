@@ -24,6 +24,7 @@ ext {
     junitVersion = '4.12'
     espressoVersion = '3.1.0'
     archLifecycleVersion = '2.1.0'
+    androidXTestVersion = '1.2.0'
 
 
     materialVersion = '1.0.0'
