@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.programmergabut.academy.R
-import com.programmergabut.academy.data.ModuleEntity
+import com.programmergabut.academy.data.source.local.entity.ModuleEntity
 
 class ModuleListAdapter internal constructor(private val listener: MyAdapterClickListener) :
     RecyclerView.Adapter<ModuleListAdapter.ModuleViewHolder>() {

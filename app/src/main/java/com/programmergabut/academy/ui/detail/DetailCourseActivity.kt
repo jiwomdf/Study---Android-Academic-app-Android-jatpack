@@ -2,7 +2,6 @@ package com.programmergabut.academy.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -10,13 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.programmergabut.academy.R
-import com.programmergabut.academy.data.CourseEntity
+import com.programmergabut.academy.data.source.local.entity.CourseEntity
 import com.programmergabut.academy.ui.reader.CourseReaderActivity
 import com.programmergabut.academy.utils.DataDummy
+import com.programmergabut.academy.viewmodel.ViewModelFactory
 
 import kotlinx.android.synthetic.main.activity_detail_course.*
 import kotlinx.android.synthetic.main.content_detail_course.*
-import kotlinx.android.synthetic.main.fragment_module_list.*
 import kotlinx.android.synthetic.main.fragment_module_list.rv_module
 
 class DetailCourseActivity : AppCompatActivity() {
@@ -33,7 +32,8 @@ class DetailCourseActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val adapter = DetailCourseAdapter()
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
+        val factor = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factor)[DetailCourseViewModel::class.java]
 
 
         val extras = intent.extras

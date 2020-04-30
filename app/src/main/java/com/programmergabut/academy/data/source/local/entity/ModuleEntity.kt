@@ -1,4 +1,6 @@
-package com.programmergabut.academy.data
+package com.programmergabut.academy.data.source.local.entity
+
+import com.programmergabut.academy.data.source.local.entity.ContentEntity
 
 data class ModuleEntity(
     var moduleId: String,

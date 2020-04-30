@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.programmergabut.academy.R
-import com.programmergabut.academy.data.ContentEntity
-import com.programmergabut.academy.data.ModuleEntity
+import com.programmergabut.academy.data.source.local.entity.ModuleEntity
 import com.programmergabut.academy.ui.reader.CourseReaderViewModel
+import com.programmergabut.academy.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_module_content.*
 
 /**
@@ -34,7 +34,9 @@ class ModuleContentFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+
+            val factor = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(requireActivity(), factor)[CourseReaderViewModel::class.java]
             val module = viewModel.getSelectedModule()
 
             populateWebView(module)
