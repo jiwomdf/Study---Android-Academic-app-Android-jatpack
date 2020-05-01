@@ -31,6 +31,9 @@ android {
 
 // To inline the bytecode built with JVM target 1.8 into
 // bytecode that is being built with JVM target 1.6. (e.g. navArgs)
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 
 
     kotlinOptions {
@@ -63,10 +66,15 @@ dependencies {
     //unit testing
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     testImplementation 'org.mockito:mockito-inline:3.0.0'
+    testImplementation "androidx.arch.core:core-testing:$archLifecycleVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
 
     //instrumental testing
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+
+    //espresso
+    implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
 
 
     testImplementation "junit:junit:$junitVersion"
