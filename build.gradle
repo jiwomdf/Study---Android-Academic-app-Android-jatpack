@@ -27,6 +27,7 @@ ext {
     androidXTestVersion = '1.2.0'
     mockitoVersion = '2.23.4'
     mockitoKotlinVersion = '2.1.0'
+    idleResourceVersion = '3.3.0-beta01'
 
 
     materialVersion = '1.0.0'
