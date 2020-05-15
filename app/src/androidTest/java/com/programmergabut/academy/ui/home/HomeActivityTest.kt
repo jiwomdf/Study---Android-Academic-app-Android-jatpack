@@ -68,5 +68,15 @@ class HomeActivityTest{
         onView(withText("Bookmark")).perform(click())
         onView(withId(R.id.rv_bookmark)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_bookmark)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyCourse.size))
+
+
+//        val dummyCourses = MutableLiveData<List<CourseEntity>>()
+//        dummyCourses.value = DataDummy.generateDummyCourses()
+//        `when`(local.getAllCourses()).thenReturn(dummyCourses)
+//
+//        val courseEntities: Resource<List<CourseEntity>> = LiveDataTestUtil.getValue(academyRepository.getAllCourses())
+//        verify(local).getAllCourses()
+//        assertNotNull(courseEntities.data)
+//        assertEquals(courseResponses.size.toLong(), courseEntities.data?.size?.toLong())
     }
 }

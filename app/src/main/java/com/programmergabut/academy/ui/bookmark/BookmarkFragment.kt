@@ -16,32 +16,29 @@ import kotlinx.android.synthetic.main.fragment_bookmark.*
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback  {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_bookmark, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         if (activity != null) {
-
-            val factor = ViewModelFactory.getInstance(requireActivity())
-            val viewModel = ViewModelProvider(this, factor)[BookmarkViewModel::class.java]
-            val courses = viewModel.getBookmarks()
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[BookmarkViewModel::class.java]
 
             val adapter = BookmarkAdapter(this)
             progress_bar.visibility = View.VISIBLE
-            viewModel.getBookmarks().observe(viewLifecycleOwner, Observer { courses ->
+            viewModel.getBookmarks().observe(viewLifecycleOwner, Observer{ courses ->
                 progress_bar.visibility = View.GONE
                 adapter.setCourses(courses)
                 adapter.notifyDataSetChanged()
             })
 
-            rv_bookmark.apply {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                this.adapter = adapter
-            }
+            rv_bookmark.layoutManager = LinearLayoutManager(context)
+            rv_bookmark.setHasFixedSize(true)
+            rv_bookmark.adapter = adapter
         }
     }
 

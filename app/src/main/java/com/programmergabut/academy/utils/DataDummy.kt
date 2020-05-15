@@ -1,6 +1,8 @@
 package com.programmergabut.academy.utils
 
+import com.programmergabut.academy.data.source.local.entity.ContentEntity
 import com.programmergabut.academy.data.source.local.entity.CourseEntity
+import com.programmergabut.academy.data.source.local.entity.CourseWithModule
 import com.programmergabut.academy.data.source.local.entity.ModuleEntity
 import com.programmergabut.academy.data.source.remote.response.ContentResponse
 import com.programmergabut.academy.data.source.remote.response.CourseResponse
@@ -8,7 +10,7 @@ import com.programmergabut.academy.data.source.remote.response.ModuleResponse
 
 object DataDummy {
 
-    fun generateDummyCourses(): ArrayList<CourseEntity> {
+    fun generateDummyCourses(): List<CourseEntity> {
 
         val courses = ArrayList<CourseEntity>()
 
@@ -198,4 +200,18 @@ object DataDummy {
     fun generateRemoteDummyContent(moduleId: String): ContentResponse {
         return ContentResponse(moduleId, "This is a dummy content")
     }
+
+    fun generateDummyCourseWithModules(course: CourseEntity, bookmarked: Boolean): CourseWithModule {
+        course.bookmarked = bookmarked
+        return CourseWithModule(course, generateDummyModules(course.courseId))
+    }
+    fun generateDummyContent(moduleId: String): ContentEntity =
+        ContentEntity("This is a dummy content")
+
+    fun generateDummyModuleWithContent(courseId: String): ModuleEntity {
+        val moduleEntity = generateDummyModules(courseId)[0]
+        moduleEntity.contentEntity = generateDummyContent(moduleEntity.moduleId)
+        return moduleEntity
+    }
+
 }
