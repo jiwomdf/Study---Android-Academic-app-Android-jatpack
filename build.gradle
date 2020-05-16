@@ -29,6 +29,7 @@ ext {
     mockitoKotlinVersion = '2.1.0'
     idleResourceVersion = '3.3.0-beta01'
     roomVersion = '2.2.5'
+    pagingVersion = '2.1.2'
 
 
     materialVersion = '1.0.0'

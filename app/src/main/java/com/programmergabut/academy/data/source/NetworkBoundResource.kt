@@ -2,6 +2,8 @@ package com.programmergabut.academy.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.paging.PagedList
+import com.programmergabut.academy.data.source.local.entity.CourseEntity
 import com.programmergabut.academy.data.source.remote.ApiResponse
 import com.programmergabut.academy.data.source.remote.StatusResponse
 import com.programmergabut.academy.utils.AppExecutors
@@ -19,9 +21,9 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val mExecut
 
         result.addSource(dbSource) { data ->
             result.removeSource(dbSource)
-            if (shouldFetch(data)) {
+            if (shouldFetch(data))
                 fetchFromNetwork(dbSource)
-            } else {
+            else {
                 result.addSource(dbSource) { newData ->
                     result.value = Resource.success(newData)
                 }

@@ -3,6 +3,7 @@ package com.programmergabut.academy.ui.home
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -12,7 +13,6 @@ import com.programmergabut.academy.R
 import com.programmergabut.academy.utils.DataDummy
 import com.programmergabut.academy.utils.EspressoIdlingResource
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -65,18 +65,15 @@ class HomeActivityTest{
 
     @Test
     fun loadBookmarks() {
+        onView(withId(R.id.rv_academy)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
         onView(withText("Bookmark")).perform(click())
         onView(withId(R.id.rv_bookmark)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_bookmark)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyCourse.size))
-
-
-//        val dummyCourses = MutableLiveData<List<CourseEntity>>()
-//        dummyCourses.value = DataDummy.generateDummyCourses()
-//        `when`(local.getAllCourses()).thenReturn(dummyCourses)
-//
-//        val courseEntities: Resource<List<CourseEntity>> = LiveDataTestUtil.getValue(academyRepository.getAllCourses())
-//        verify(local).getAllCourses()
-//        assertNotNull(courseEntities.data)
-//        assertEquals(courseResponses.size.toLong(), courseEntities.data?.size?.toLong())
+        onView(withId(R.id.rv_bookmark)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.text_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.text_date)).check(matches(isDisplayed()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
     }
 }

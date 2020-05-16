@@ -30,7 +30,6 @@ class AcademyFragment : Fragment() {
 
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[AcademyViewModel::class.java]
-            val courses = viewModel.getCourses()
 
             val academyAdapter = AcademyAdapter()
             progress_bar.visibility = View.VISIBLE
@@ -41,7 +40,7 @@ class AcademyFragment : Fragment() {
                         Status.LOADING -> progress_bar.visibility = View.VISIBLE
                         Status.SUCCESS -> {
                             progress_bar.visibility = View.GONE
-                            academyAdapter.setCourses(courses.data)
+                            academyAdapter.submitList(courses.data)
                             academyAdapter.notifyDataSetChanged()
                         }
                         Status.ERROR -> {
